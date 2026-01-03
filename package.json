@@ -8,6 +8,7 @@
   "scripts": {
     "gen": "node scripts/gen.mjs",
     "install": "node scripts/install.mjs",
+    "uninstall": "node scripts/uninstall.mjs",
     "link:windsurf": "node scripts/link-windsurf.mjs"
   }
 }

@@ -62,6 +62,8 @@ npm run link:windsurf
   - `~/.windsurf/workflows` (хранилище, дальше линк)
   - `${CODEX_HOME:-~/.codex}/prompts`
 
+- `npm run uninstall` - удаляет из целевых папок файлы команд, перечисленные в `dist/**`
+
 - `npm run link:windsurf` - делает `.windsurf/workflows` -> `~/.windsurf/workflows` (symlink/junction)
 
 ## Примечания по папкам (ссылки на доки)
