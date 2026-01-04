@@ -89,6 +89,9 @@ export async function generate({ targets, promptsDir }) {
   }
 
   for (const name of promptFiles) {
+    if (name.toLowerCase() === "readme.md") {
+      continue; // Skip README.md
+    }
     const srcPath = path.join(promptsDir, name);
     const content = await fs.readFile(srcPath, "utf8");
 
