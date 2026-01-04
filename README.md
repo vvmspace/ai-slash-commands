@@ -1,5 +1,14 @@
 # ai-slash-commands
 
+A tool for managing AI slash commands and prompts across multiple AI-powered editors. Write prompts once in markdown, and install them to Claude Code, Cursor, Windsurf, and Codex.
+
+**Quick start:**
+```bash
+npx ai-slash-commands
+```
+
+[Prompts list](prompts/)
+
 Один набор markdown-промптов в `./prompts/*.md`, генерация в `./dist/**` и установка в домашние папки для:
 - Claude Code
 - Cursor

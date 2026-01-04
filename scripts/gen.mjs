@@ -38,6 +38,41 @@ async function listPromptFiles(promptsDir) {
     .map(e => e.name);
 }
 
+async function generateCommandsReadme(promptsDir) {
+  const promptFiles = await listPromptFiles(promptsDir);
+  const commands = [];
+
+  for (const name of promptFiles) {
+    if (name.toLowerCase() === "readme.md") {
+      continue; // Skip README.md itself
+    }
+    const srcPath = path.join(promptsDir, name);
+    const content = await fs.readFile(srcPath, "utf8");
+    const commandName = name.replace(/\.md$/i, "");
+    const firstLine = content.split("\n")[0].trim();
+    const description = firstLine || "No description";
+    commands.push({ name: commandName, description, filename: name });
+  }
+
+  // Sort commands alphabetically by name
+  commands.sort((a, b) => a.name.localeCompare(b.name));
+
+  // Generate README content
+  let readmeContent = "# Commands\n\n";
+  readmeContent += "This directory contains AI slash command prompts.\n\n";
+  readmeContent += "## Available Commands\n\n";
+
+  for (const cmd of commands) {
+    readmeContent += `### \`/${cmd.name}\`\n\n`;
+    readmeContent += `${cmd.description}\n\n`;
+    readmeContent += `*Source: [${cmd.filename}](${cmd.filename})*\n\n`;
+  }
+
+  const readmePath = path.join(promptsDir, "README.md");
+  await fs.writeFile(readmePath, readmeContent, "utf8");
+  console.log(`Generated: ${path.relative(repoRoot, readmePath)}`);
+}
+
 export async function generate({ targets, promptsDir }) {
   const promptFiles = await listPromptFiles(promptsDir);
   if (promptFiles.length === 0) {
@@ -62,6 +97,9 @@ export async function generate({ targets, promptsDir }) {
       await fs.writeFile(outPath, content.endsWith("\n") ? content : content + "\n", "utf8");
     }
   }
+
+  // Generate commands README in prompts directory
+  await generateCommandsReadme(promptsDir);
 
   console.log("Generated:");
   for (const t of targets) {
