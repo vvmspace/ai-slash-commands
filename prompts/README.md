@@ -30,7 +30,7 @@ This directory contains AI slash command prompts.
 
 ### `/refactoring`
 
-Review the codebase, find files with many lines or a lot of duplicate code, suggest 2-3 refactoring tasks to improve the code.
+# refactoring - refactor the code
 
 *Source: [refactoring.md](refactoring.md)*
 
