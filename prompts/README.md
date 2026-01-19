@@ -52,6 +52,12 @@ This directory contains AI slash command prompts.
 
 *Source: [push.md](push.md)*
 
+### `/readme-update`
+
+# Add Documentation
+
+*Source: [readme-update.md](readme-update.md)*
+
 ### `/refactor-code`
 
 # Refactor Code
